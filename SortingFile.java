@@ -12,6 +12,7 @@ public class SortingFile{
     /** 
      * Metodo para sortear con el tipo "gnome sort"
      * Obtenido y modificado a partir de el archivo "The Sound of Sorting Algorithm Cheat Sheet"
+     * @param list array con los elementos a ordenar
      */
     public void gnomeSort (int[] list){
         int i = 0;
@@ -32,6 +33,7 @@ public class SortingFile{
     /** 
      * Metodo para sortear con el tipo "merge sort"
      * Obtenido y modificado a partir de el archivo "The Sound of Sorting Algorithm Cheat Sheet"
+     * @param list array con los elementos a ordenar
      * @param lo elemento inicial
      * @param hi ultimo elemento del array
      */
@@ -85,25 +87,64 @@ public class SortingFile{
     /** 
      * Metodo para sortear con el tipo "quick sort"
      * Obtenido y modificado a partir de el archivo "The Sound of Sorting Algorithm Cheat Sheet"
+     * @param list array con los elementos a ordenar
+     * @param lo indice inicial
+     * @param hi indice final
      */
-    public void quickSort (int[] list){
-
+    public void quickSort (int[] list,int lo, int hi){
+        if (lo<hi){
+            int pi = partition(list,lo,hi);
+            quickSort(list, lo, pi-1);
+            quickSort(list, pi+1, hi);
+        }
     }
 
     /** 
      * Metodo para sortear con el tipo "radix sort"
      * Obtenido y modificado a partir de el archivo "The Sound of Sorting Algorithm Cheat Sheet"
+     * @param list array con los elementos a ordenar
      */
     public void lsdRadixSort (int[] list){
 
     }
 
     /** 
-     * Metodo para sortear con el tipo "insertion sort"
+     * Metodo para sortear con el tipo "selection sort"
      * Obtenido y modificado a partir de el archivo "The Sound of Sorting Algorithm Cheat Sheet"
+     * @param list array con los elementos a ordenar
      */
-    public void insertionSort (int[] list){
+    public void selectionSort (int[] list){
 
     }
-    
+
+
+
+    /** 
+     * Metodo de apoyo para el "quick sort"
+     * Obtiene el ultimo elemento como pivot, lo coloca en su lugar y posiciona
+     *          todos los elementos mejores a la izquierda y todos los 
+     *          mayores a la derecha.
+     * Obtenido y modificado a partir de el archivo "The Sound of Sorting Algorithm Cheat Sheet"
+     * @param list array con los elementos a ordenar
+     * @param lo indice mas bajo
+     * @param hi indice mas alto
+     */
+    public int partition(int []list,int lo,int hi){
+        int pivot = list[hi];
+        int i = (lo-1);
+        for (int j = lo;j<=hi-1;j++){
+
+            if (list[j]<pivot){    
+                i++;
+                int temp = list[i];
+                list[i] = list[j];
+                list[j] = temp;
+            }
+        }
+        int temp2 = list[i+1];
+        list[i+1] = list[hi];
+        list[hi] = temp2;
+        return (i+1);
+    }
+
 }
