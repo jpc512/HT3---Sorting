@@ -5,7 +5,7 @@ Clase con los metodos para hacer el sorting
 @file SortingFile.java
 ******************************************************************/
 
-//import java.util.*;
+import java.util.*;
 
 public class SortingFile{
 
@@ -99,14 +99,6 @@ public class SortingFile{
         }
     }
 
-    /** 
-     * Metodo para sortear con el tipo "radix sort"
-     * Obtenido y modificado a partir de el archivo "The Sound of Sorting Algorithm Cheat Sheet"
-     * @param list array con los elementos a ordenar
-     */
-    public void lsdRadixSort (int[] list){
-
-    }
 
     /** 
      * Metodo para sortear con el tipo "selection sort"
@@ -156,6 +148,66 @@ public class SortingFile{
         list[i+1] = list[hi];
         list[hi] = temp2;
         return (i+1);
+    }
+
+
+    /** 
+     * Metodo para sortear con el tipo "radix sort"
+     * Obtenido y modificado a partir de el archivo "The Sound of Sorting Algorithm Cheat Sheet" y de https://www.geeksforgeeks.org/radix-sort/
+     * @param list array con los elementos a ordenar
+     */
+    public void radixSort (int[] list){
+        int m = getMax(list);
+        for (int e = 1;m/e>0;e*=10){
+            countSort(list, e);
+        }
+    }
+
+    /** 
+     * Metodo de apoyo para el "radix sort"
+     * Obtiene el valor maximo en un array
+     * Obtenido y modificado a partir de https://www.geeksforgeeks.org/radix-sort/
+     * @param list array del que se quiere saber el valor maximo
+     */
+    public int getMax (int[] list){
+        int max = list[0];
+        for (int i =1;i<list.length;i++){
+            if (list[i]>max){
+                max = list[i];
+            }
+        }
+        return max;
+    }
+
+
+    /** 
+     * Metodo de apoyo para el "radix sort"
+     * Sirve para hacer counting sort de un array, de acuerdo al digito representado por exp
+     * Obtenido y modificado a partir de https://www.geeksforgeeks.org/radix-sort/
+     * @param list array del que sortear
+     * @param e digito representador
+     */
+    public void countSort (int[] list, int e){
+        int output[] = new int[list.length]; //array de output
+        int count[] = new int[10];
+        Arrays.fill(count,0);
+        int i;
+        
+        for(i=0;i<list.length;i++){ // almacenar cuantas ocurrencias en count
+            count[(list[i]/e)%10]++;
+        }
+        for (i=1;i<10;i++){ // cambiar count para que contenga la posicion de su digito en output
+            count[i]+=count[i-1];
+        }
+        for (i=list.length-1;i>=0;i--){ //construir el array de output
+            output[count[(list[i]/e)%10]-1]=list[i];
+            count[(list[i]/e)%10]--;
+        }
+
+        for (i=0;i<list.length;i++){ //convertir la lista a la de output
+            list[i]=output[i];
+        }
+
     }
 
 }
