@@ -1,13 +1,13 @@
 /******************************************************************
-Ultima modificacion: 05/02/2022
+Ultima modificacion: 08/02/2022
 
-Clase main grupo 12
-@file MainGrupo12.java
+Clase para escribir en un archivo numeros aleatorios
+@file MainArchivos.java
 ******************************************************************/
 import java.util.Scanner;
 
 
-public class MainGrupo12 {
+public class MainArchivos {
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
         SortingFile sf = new SortingFile();
