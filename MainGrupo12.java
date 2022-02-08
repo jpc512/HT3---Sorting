@@ -15,7 +15,7 @@ public class MainGrupo12 {
         
         //dar opciones
         while (!terminar){
-            System.out.println("Escriba el numero de la opcion que desee realizar:\n1. Escribir numeros en un archivo\n2. Ordenar numeros en un archivo\n\n");
+            System.out.println("Escriba el numero de la opcion que desee realizar:\n1. Escribir numeros en un archivo\n2. Ordenar numeros en un archivo\n3. Salir del programa\n\n");
             String opcion = scan.nextLine();
             if (opcion.equalsIgnoreCase("1")) {
                 //escribir en el archivo
@@ -38,7 +38,7 @@ public class MainGrupo12 {
                     }
                 }
                 ControladorArchivos.escribirNumeros(cantidad);
-                terminar = true;
+               
             } else if (opcion.equalsIgnoreCase("2")){
                 //ordenar numeros
                 //primero -> leer archivo:
@@ -73,7 +73,9 @@ public class MainGrupo12 {
                     }
                 }
                 ControladorArchivos.escribirLista(lista);
-                terminar = true;
+               
+            } else if (opcion.equalsIgnoreCase("3")){
+            	terminar = true;
             } else {
                 System.out.println("Escriba una opcion valida\n");
             }
