@@ -19,9 +19,9 @@ public class MainArchivos {
             //String opcion = scan.nextLine();
             //if (opcion.equalsIgnoreCase("1")) {
                 //escribir en el archivo
-                //boolean opcionV = false;
+               boolean opcionV = false;
                 int cantidad = 0;
-                /******************************************************************
+                
                 while (!opcionV){
                     System.out.println("Escriba un numero entre 10 y 3000");
                     String numero = scan.nextLine();
@@ -38,7 +38,7 @@ public class MainArchivos {
                         System.out.println("Opcion Invalida");
                     }
                 }
-                    ******************************************************************/
+                 
                 ControladorArchivos.escribirNumeros(cantidad);
                 scan.close();
                 
