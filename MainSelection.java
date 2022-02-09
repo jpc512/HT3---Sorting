@@ -7,6 +7,7 @@ Clase para correr el metodo selection
 
 public class MainSelection {
     public static void main(String[] args){
+    	
     	long TInicio, TFin, tiempo;           //Para determinar el tiempo
    	 	TInicio = System.currentTimeMillis(); //de ejecución
         SortingFile sf = new SortingFile();
