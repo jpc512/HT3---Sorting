@@ -19,11 +19,11 @@ public class MainArchivos {
             //String opcion = scan.nextLine();
             //if (opcion.equalsIgnoreCase("1")) {
                 //escribir en el archivo
-               boolean opcionV = false;
-                int cantidad = 0;
-                
+               //boolean opcionV = false;
+                int cantidad = 900;
+                /******************************************************************
                 while (!opcionV){
-                    System.out.println("Escriba un numero entre 10 y 3000");
+                    System.out.println("Escriba un numero entre 10 y 30000");
                     String numero = scan.nextLine();
                     try {
                         cantidad = Integer.parseInt(numero);
@@ -31,16 +31,33 @@ public class MainArchivos {
                         //opcion invalida
                         cantidad = 3001;
                     }
-                    if (cantidad <=3000 && cantidad>=10){
+                    if (cantidad <=30000 && cantidad>=10){
                         //no pasa nada porque la opcion es valida
                         opcionV=true;
                     } else {
                         System.out.println("Opcion Invalida");
                     }
                 }
-                 
+                     ******************************************************************/
                 ControladorArchivos.escribirNumeros(cantidad);
-                scan.close();
+                long[] tiempoList = new long[100];
+                
+                for (int i = 0; i<100;i++) {
+                	long TInicio, TFin, tiempo;           //Para determinar el tiempo
+               	 	TInicio = System.currentTimeMillis(); //de ejecución
+                    SortingFile sf = new SortingFile();
+                  //ordenar numeros
+                    //primero -> leer archivo:
+                    ControladorArchivos.escribirNumeros(cantidad);
+                    int[] lista = ControladorArchivos.leerNumeros();
+                    //merge sort
+                    sf.mergeSort(lista, 0, lista.length-1);
+                    ControladorArchivos.escribirLista(lista);
+                    TFin = System.currentTimeMillis();
+                    tiempo = TFin - TInicio;
+                    tiempoList[i]=tiempo;
+                    System.out.println(tiempo);
+                }
                 
 /******************************************************************
             } else if (opcion.equalsIgnoreCase("2")){
@@ -87,5 +104,6 @@ public class MainArchivos {
         
     
     ******************************************************************/
+                scan.close();
     }
 }
